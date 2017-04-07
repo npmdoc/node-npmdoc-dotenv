@@ -1,0 +1,247 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/motdotla/dotenv#readme">dotenv (v4.0.0)</a>
+</h1>
+<h4>Loads environment variables from .env file</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.dotenv">module dotenv</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dotenv.config">
+            function <span class="apidocSignatureSpan">dotenv.</span>config
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dotenv.load">
+            function <span class="apidocSignatureSpan">dotenv.</span>load
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dotenv.parse">
+            function <span class="apidocSignatureSpan">dotenv.</span>parse
+            <span class="apidocSignatureSpan">(src)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.dotenv" id="apidoc.module.dotenv">module dotenv</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.dotenv.config" id="apidoc.element.dotenv.config">
+        function <span class="apidocSignatureSpan">dotenv.</span>config
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function config(options) {
+  var path = '.env'
+  var encoding = 'utf8'
+
+  if (options) {
+    if (options.path) {
+      path = options.path
+    }
+    if (options.encoding) {
+      encoding = options.encoding
+    }
+  }
+
+  try {
+    // specifying an encoding returns a string instead of a buffer
+    var parsedObj = parse(fs.readFileSync(path, { encoding: encoding }))
+
+    Object.keys(parsedObj).forEach(function (key) {
+      process.env[key] = process.env[key] || parsedObj[key]
+    })
+
+    return { parsed: parsedObj }
+  } catch (e) {
+    return { error: e }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+## Usage
+
+As early as possible in your application, require and configure dotenv.
+
+```javascript
+require('dotenv').<span class="apidocCodeKeywordSpan">config</span>()
+```
+
+Create a `.env` file in the root directory of your project. Add
+environment-specific variables on new lines in the form of `NAME=VALUE`.
+For example:
+
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dotenv.load" id="apidoc.element.dotenv.load">
+        function <span class="apidocSignatureSpan">dotenv.</span>load
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function config(options) {
+  var path = '.env'
+  var encoding = 'utf8'
+
+  if (options) {
+    if (options.path) {
+      path = options.path
+    }
+    if (options.encoding) {
+      encoding = options.encoding
+    }
+  }
+
+  try {
+    // specifying an encoding returns a string instead of a buffer
+    var parsedObj = parse(fs.readFileSync(path, { encoding: encoding }))
+
+    Object.keys(parsedObj).forEach(function (key) {
+      process.env[key] = process.env[key] || parsedObj[key]
+    })
+
+    return { parsed: parsedObj }
+  } catch (e) {
+    return { error: e }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dotenv.parse" id="apidoc.element.dotenv.parse">
+        function <span class="apidocSignatureSpan">dotenv.</span>parse
+        <span class="apidocSignatureSpan">(src)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function parse(src) {
+  var obj = {}
+
+  // convert Buffers before splitting into lines and processing
+  src.toString().split('\n').forEach(function (line) {
+    // matching "KEY' and 'VAL' in 'KEY=VAL'
+    var keyValueArr = line.match(/^\s*([\w\.\-]+)\s*=\s*(.*)?\s*$/)
+    // matched?
+    if (keyValueArr != null) {
+      var key = keyValueArr[1]
+
+      // default undefined or missing values to empty string
+      var value = keyValueArr[2] ? keyValueArr[2] : ''
+
+      // expand newlines in quoted values
+      var len = value ? value.length : 0
+      if (len &gt; 0 &amp;&amp; value.charAt(0) === '"' &amp;&amp; value.charAt(len - 1) === '"') {
+        value = value.replace(/\\n/gm, '\n')
+      }
+
+      // remove any surrounding quotes and extra spaces
+      value = value.replace(/(^['"]|['"]$)/g, '').trim()
+
+      obj[key] = value
+    }
+  })
+
+  return obj
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+The engine which parses the contents of your file containing environment
+variables is available to use. It accepts a String or Buffer and will return
+an Object with the parsed keys and values.
+
+```js
+var dotenv = require('dotenv')
+var buf = new Buffer('BASIC=basic')
+var config = dotenv.<span class="apidocCodeKeywordSpan">parse</span>(buf) // will return an object
+console.log(typeof config, config) // object { BASIC : 'basic' }
+```
+
+### Rules
+
+The parsing engine currently supports the following rules:
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
