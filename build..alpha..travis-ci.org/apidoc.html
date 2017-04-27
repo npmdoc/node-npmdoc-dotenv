@@ -130,21 +130,15 @@
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-```
+  process.argv.forEach(function (val, idx, arr) {
+    var matches = val.match(/^dotenv_config_(.+)=(.+)/)
+    if (matches) {
+      options[matches[1]] = matches[2]
+    }
+  })
 
-## Usage
-
-As early as possible in your application, require and configure dotenv.
-
-```javascript
-require(&#x27;dotenv&#x27;).<span class="apidocCodeKeywordSpan">config</span>()
-```
-
-Create a `.env` file in the root directory of your project. Add
-environment-specific variables on new lines in the form of `NAME=VALUE`.
-For example:
-
-```
+  require(&#x27;./lib/main&#x27;).<span class="apidocCodeKeywordSpan">config</span>(options)
+})()
 ...</pre></li>
     </ul>
 
