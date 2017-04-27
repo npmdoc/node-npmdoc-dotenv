@@ -1,6 +1,6 @@
 # npmdoc-dotenv
 
-#### api documentation for  [dotenv (v4.0.0)](https://github.com/motdotla/dotenv#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-dotenv.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dotenv) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dotenv.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dotenv)
+#### basic api documentation for  [dotenv (v4.0.0)](https://github.com/motdotla/dotenv#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-dotenv.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dotenv) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dotenv.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dotenv)
 
 #### Loads environment variables from .env file
 
@@ -87,7 +87,8 @@
         "pretest": "npm run lint",
         "test": "lab test/* -r lcov | coveralls"
     },
-    "version": "4.0.0"
+    "version": "4.0.0",
+    "bin": {}
 }
 ```
 
